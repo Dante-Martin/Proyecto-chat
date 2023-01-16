@@ -79,7 +79,7 @@ router.all("*", function (req, res) {
 // })
 
 //-----Escuchar server-----//
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () =>
   console.log(`Servidor conectado, escuchando el puerto ${PORT}`)
 ); //escucha el puerto y recibe un callback
