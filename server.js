@@ -1,7 +1,6 @@
 //-----exportamos módulo de express-----//
 require("dotenv").config();
-const { response } = require("express");
-const e = require("express");
+
 const express = require("express"); // requerimos express.
 //const bodyParser = require("body-parser"); //requiere el middlware de bodyParcer. Se encarga de agregar a nuestro request el campo body de acuerdo al tipo de contenido (texto) enviado en las cabeceras http. ya esta adentro de express
 // const { query } = require("express");
@@ -16,6 +15,21 @@ var app = express(); //pasamos parametros a express. Con app le pasamos todo
 
 //-----variables de entorno-----//
 console.log("__dirname", __dirname); //ruta de donde parte mi app
+
+function success(req, res, message, status) {
+  res.status(status || 200).send({
+    error: "",
+    body: message,
+  });
+}
+
+function error(req, res, message, status, details) {
+  console.log("req" + details);
+  res.status(status || 500).send({
+    error: message,
+    body: "",
+  });
+}
 
 //-----Rutas-----//
 app.use(express.json()); //si o si especificar que tipo de datos leer, en este caso, json
@@ -36,38 +50,38 @@ router.get("/home", function (request, response) {
   console.log(request.body);
 });
 
-router.get("/message", function (req, res) {
+router.get("/", function (req, res) {
   controller
     .getMessages()
     .then((messageList) => {
-      res.success(req, res, messageList, 200);
+      success(req, res, messageList, 202);
     })
     .catch((e) => {
-      res.error(req, res, "Error inesperado", 500, e);
+      error(req, res, "error al obtener mensajes", 500, e);
     });
+  // res.status(500).send("Error inestperado desde el get");
+  // console.log(getMessages());
+  // console.log(list);
 });
 
 router.post("/recibir", function (req, res) {
-  console.log(JSON.stringify(req.body));
+  console.log(JSON.stringify("del post:", req.body));
 
   // console.log(JSON.stringify(req.params)); //desde INSOMNIA le agrego un json y lo devuelve
   //  console.log(req);
 
-  controller.addMessage(req.body.user, req.body.usermsg);
-  // .then(() => {
-  //   response.success(req, res, "Creado correctamente", 201);
-  // })
-  // .catch(e => {
-  //   response.errored(
-  //     req,
-  //     res,
-  //     "Error inesperado",
-  //     400,
-  //     "Error en el controlador"
-  //   );
-  // });
+  controller
+    .addMessage(req.body.user, req.body.usermsg)
+    .then((fullMessage) => {
+      success(req, res, fullMessage, 201);
+      // res.status(201).sendFile(req, res, "Creado correctamente");
+    })
+    .catch((e) => {
+      error(req, res, "detalles del error", 500, e);
+      // res.status(400).send("Error inestperado");
+    });
 
-  res.send("hola desde post " + req.body.usermsg + req.body.user);
+  // res.send("hola desde post " + req.body.usermsg + req.body.user); aparece un error: "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client" porque se mando dos .send y se bloquea el envio al cliente.
 });
 
 // router.post("/", function (req, res) {

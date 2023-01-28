@@ -18,14 +18,21 @@ function addMessage(user, usermsg) {
     console.log(fullMessage);
     store.add(fullMessage);
     resolve(fullMessage);
+    console.log("funca addMessages");
   });
 }
 function getMessages() {
   return new Promise((resolve, reject) => {
+    console.log("funca getMessages_controller");
     resolve(store.list());
+    resolve(console.log("store.list:", store.list()));
+    reject(console.log("no hay datos"));
   });
 }
 module.exports = {
   addMessage,
   getMessages,
 };
+
+// console.log(store);
+// console.log(getMessages);
