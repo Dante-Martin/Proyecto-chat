@@ -9,6 +9,7 @@ const router = express.Router(); // para permitir separar por cabecera, url (ord
 var XMLHttpRequest = require("xhr2");
 
 const controller = require("./controller"); //puedo acceder a controlle.js
+const { list } = require("./store");
 
 //-----inicializar express-----//
 var app = express(); //pasamos parametros a express. Con app le pasamos todo
@@ -24,7 +25,7 @@ function success(req, res, message, status) {
 }
 
 function error(req, res, message, status, details) {
-  console.log("req" + details);
+  console.log("[Error]" + details);
   res.status(status || 500).send({
     error: message,
     body: "",
@@ -50,11 +51,11 @@ router.get("/home", function (request, response) {
   console.log(request.body);
 });
 
-router.get("/", function (req, res) {
+router.get("/message", function (req, res) {
   controller
     .getMessages()
-    .then((messageList) => {
-      success(req, res, messageList, 202);
+    .then((list) => {
+      success(req, res, list, 202);
     })
     .catch((e) => {
       error(req, res, "error al obtener mensajes", 500, e);
