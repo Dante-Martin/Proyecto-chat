@@ -14,6 +14,7 @@ function addMessage(user, usermsg) {
       user: user,
       message: usermsg,
       date: new Date(),
+      // id: id,
     };
     console.log(fullMessage);
     store.add(fullMessage);
@@ -22,16 +23,34 @@ function addMessage(user, usermsg) {
   });
 }
 function getMessages() {
-  return new Promise((resolve, reject) => {
-    console.log("funca getMessages_controller");
-    resolve(store.list());
-    resolve(console.log("store.list:", store.list()));
-    reject(console.log("no hay datos"));
+  setTimeout(() => {
+    new Promise((resolve, reject) => {
+      resolve(store.list());
+      // resolve(store.list());
+      // resolve(console.log("store.list:", store.list()));
+      reject(console.log("no hay datos"));
+    });
+  }, 1000);
+}
+
+function updateMessages(id, usermsg) {
+  return new Promise(async (resolve, reject) => {
+    //se esta interactuando con otro método que es asincrono, en este caso los métodos de store. Para obtener los datos de este método debe poner async await. https://eslint.org/docs/latest/rules/no-async-promise-executor
+    console.log(id);
+    console.log(usermsg);
+    if (!id || !usermsg) {
+      reject("Datos invalidos");
+      return false;
+    }
+
+    let texto = await store.updateText(id, usermsg);
+    resolve(texto);
   });
 }
 module.exports = {
   addMessage,
   getMessages,
+  updateMessages,
 };
 
 // console.log(store);
