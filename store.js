@@ -32,15 +32,20 @@ function addMessage(usermsg) {
 
 /*---Para devolero a la app myMessage---*/
 
-async function getMessages() {
+function getMessages() {
   // esta funcion es asincrona porque es necesario que termine de ejecutarse esta funcion antes de continuar con el resto del codigo
-  const mensajes = await model.find({}, (err) => {
-    //BUSCA EN TODOS LOS DOCUMENTOS {}
-    //el metodo .find puede tomar mucho tiempo por eso se usa sync await, se debe esperar a que termine de buscar en la db
-    if (err) throw new Error(`Error en la escritura:${err}`);
-    console.log("Lectura OK"); //busca en todos los archivos
-  });
-  mensajes(); //lo que devuelve es la  lectura de model
+  return model.find({})
+    .then((mensajes) => {
+      console.log("Lectura OK");
+      // console.log("los mensajes son:", mensajes);
+      return mensajes; //lo que devuelve es la  lectura de model
+
+    })
+    .catch((err) => {
+      console.log(`No se pudo encontrar datos ${err}`);
+    });
+
+
 }
 
 // function getMessages() {
@@ -55,9 +60,10 @@ async function updateText(id, usermsg) {
   const newMessage = await foundMessages.save();
   return newMessage;
 }
-
+// function pepe() { return 2; };
 module.exports = {
   add: addMessage,
   list: getMessages,
-  updateText: updateText,
+
+  updateText: updateText
 };

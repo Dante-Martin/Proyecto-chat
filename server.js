@@ -59,7 +59,8 @@ router.get("/message", function (req, res) {
     .getMessages()
     .then((list) => {
       //El método then() se utiliza con la llamada de retorno cuando la promesa se cumple o resuelve con éxito.
-      success(req, res, list, 202); //puede que este mal
+      // console.log("muestro:", list);
+      success(req, res, list, 200); //puede que este mal
     })
     .catch((e) => {
       error(req, res, "error al obtener mensajes", 500, e);

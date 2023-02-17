@@ -24,13 +24,13 @@ function addMessage(user, usermsg) {
 }
 function getMessages() {
 
-  return new Promise((resolve, reject) => {
+  new Promise((resolve, reject) => {
     resolve(store.list());
-    console.log("Se recibio correctamente");
     // resolve(store.list());
     // resolve(console.log("store.list:", store.list()));
-    // reject(console.log("no hay datos")); aca le digo que simpre falla y cuando lo haga que muestre un mensaje
+    reject(console.log("no hay datos"));
   });
+
 }
 
 function updateMessages(id, usermsg) {

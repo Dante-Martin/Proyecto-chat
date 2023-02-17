@@ -16,6 +16,6 @@ const mySchema = new Schema(
   { timestamps: true }
 );
 
-const model = mongoose.model("Mensaje", mySchema); // Todo lo que se cree tiene este esquema y se guarda en la base de datos con el nombre Mensaje
+const model = mongoose.model("mensaje", mySchema); // Todo lo que se cree tiene este esquema y se guarda en la base de datos con el nombre Mensaje
 
 module.exports = model;
