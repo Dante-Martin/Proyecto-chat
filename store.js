@@ -25,9 +25,18 @@ function addMessage(usermsg) {
   const myMessage = new model(usermsg); //agarra el mensaje
   myMessage.save((err) => {
     if (err) throw new Error(`Error en la escritura:${err}`);
-    console.log("Escritura OK");
+    console.log("Escritura mensaje OK");
   }); //guarda el mensaje
   // console.log("Elementos de la lista:", list);
+}
+
+function addUser(user) {
+
+  const myUser = new model(user); //agarra el mensaje
+  myUser.save((err) => {
+    if (err) throw new Error(`Error en la escritura:${err}`);
+    console.log("Escritura usuario OK");
+  });
 }
 
 /*---Para devolero a la app myMessage---*/
@@ -64,6 +73,6 @@ async function updateText(id, usermsg) {
 module.exports = {
   add: addMessage,
   list: getMessages,
-
+  addU: addUser,
   updateText: updateText
 };

@@ -22,6 +22,27 @@ function addMessage(user, usermsg) {
     console.log("funca addMessages");
   });
 }
+
+function addUser(user) {
+  return new Promise((resolve, reject) => {
+    if (!user) {
+      console.error(" No hay usuario ");
+      return reject("Los datos son incorrectos");
+    }
+
+    // console.log(user);
+    // console.log(usermsg);
+
+    const fullMessage = {
+      user: user,
+    };
+    console.log(fullMessage);
+    store.addU(fullMessage);
+    resolve(fullMessage);
+    console.log("funca addUser");
+  });
+}
+
 function getMessages() {
 
   return new Promise((resolve, reject) => {
@@ -49,6 +70,7 @@ function updateMessages(id, usermsg) {
 }
 module.exports = {
   addMessage,
+  addUser,
   getMessages,
   updateMessages,
 };

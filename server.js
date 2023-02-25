@@ -1,13 +1,11 @@
-//-----exportamos módulo de express-----//
 require("dotenv").config();
-
+//-----exportamos módulo de express-----//
 const express = require("express"); // requerimos express.
 
 //const bodyParser = require("body-parser"); //requiere el middlware de bodyParcer. Se encarga de agregar a nuestro request el campo body de acuerdo al tipo de contenido (texto) enviado en las cabeceras http. ya esta adentro de express
 // const { query } = require("express");
 
 const router = express.Router(); // para permitir separar por cabecera, url (ordena las diferentes rutas)
-var XMLHttpRequest = require("xhr2");
 
 const controller = require("./controller"); //puedo acceder a controlle.js
 
@@ -44,12 +42,7 @@ router.get("/hola", function (request, response) {
   //response.sendFile(__dirname + "..public/index.html");
   console.log(request.body);
 });
-router.get("/home", function (request, response) {
-  //Express traduce las cadenas de ruta (/) a expresiones regulares, que se utilizan internamente para hacer coincidir las solicitudes entrantes.
 
-  response.sendFile(__dirname + "/public/index.html");
-  console.log(request.body);
-});
 
 router.get("/message", function (req, res) {
   //para filtrar
@@ -70,12 +63,27 @@ router.get("/message", function (req, res) {
   // console.log(list);
 });
 
-router.post("/recibir", function (req, res) {
-  console.log(JSON.stringify("del post:", req.body));
+router.post("/mensajear", function (req, res) {
+  console.log("del post:", req.body.user);
 
+  controller
+    .addUser(req.body.user)
+    .then(() => {
+
+      res.sendFile(__dirname + "/public/chat.html");
+      // success(req, res, fullMessage, 201);
+    })
+    .catch((e) => {
+      error(req, res, `detalles del error ${e}`, 500, e);
+
+    });
+
+});
+
+router.post("/mensajear2", function (req, res) {
+  console.log("del post:", req.body);
   // console.log(JSON.stringify(req.params)); //desde INSOMNIA le agrego un json y lo devuelve
   //  console.log(req);
-
   controller
     .addMessage(req.body.user, req.body.usermsg)
     .then((fullMessage) => {
@@ -83,11 +91,16 @@ router.post("/recibir", function (req, res) {
       // res.status(201).sendFile(req, res, "Creado correctamente");
     })
     .catch((e) => {
-      error(req, res, "detalles del error", 500, e);
+      error(req, res, `detalles del error ${e}`, 500, e);
       // res.status(400).send("Error inestperado");
     });
-
   // res.send("hola desde post " + req.body.usermsg + req.body.user); aparece un error: "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client" porque se mando dos .send y se bloquea el envio al cliente.
+});
+router.get("/", function (request, response) {
+  //Express traduce las cadenas de ruta (/) a expresiones regulares, que se utilizan internamente para hacer coincidir las solicitudes entrantes.
+
+  response.sendFile(__dirname + "/public/index.html");
+  console.log(request.body);
 });
 
 router.patch("/message:id", function (req, res) {
@@ -101,6 +114,68 @@ router.patch("/message:id", function (req, res) {
       error(req, res, "No hay cambiosaprobados", 500, e);
     });
 });
+
+
+
+router.all("*", function (req, res) {
+  let url = req.url;
+  let method = req.method;
+  res.send(`<h3>La ${url} del method ${method} no se encuentra disponible`);
+});
+// app.use('/', (req, res)
+//     res.send('Hola')
+// })
+
+//-----Escuchar server-----//
+const PORT = process.env.PORT || 5500;
+
+const server = app.listen(PORT, () =>
+  console.log(`Servidor conectado, escuchando el puerto ${PORT}`)
+); //escucha el puerto y recibe un callback
+
+// ---websockets--//
+const SocketIo = require("socket.io");
+const io = SocketIo(server); //permito la comunicacion bidireccional en server
+let usuariosConectados = [];
+let allSockets = [];
+
+io.on('connection', (socket) => { //escucho el connectionevento en busca de sockets entrantes y lo registro en la consola.
+  console.log("conexion con socket.io");
+
+  socket.emit('welcome', { id: socket.id });
+  socket.on('i am client', (e) => {
+    allSockets.push(e.id);
+    usuariosConectados.push(e.usuario);
+    console.log(allSockets);
+    console.log(usuariosConectados);
+
+  });
+
+  socket.on('disconnect', (e) => {
+
+    let cual = allSockets.indexOf(socket.id);
+    allSockets.splice(cual, 1);
+    usuariosConectados.splice(cual, 1);
+    console.log(`Usuario conectados: ${usuariosConectados}`);
+  });
+  socket.on("EnviarMensaje", (data) => {
+
+
+    console.log(usuariosConectados);
+    console.log(data);
+  });
+
+});
+
+
+
+
+
+
+
+//---EJEMPLO DE CONECCION CON XHR2 PARA obtener información de una URL sin tener que recargar la página completa---//
+
+var XMLHttpRequest = require("xhr2");
 
 router.get("/jjj", function (request, response) {
   response.send(
@@ -128,18 +203,3 @@ router.get("/jaime", function (request, response) {
   });
   xhr.send();
 });
-
-router.all("*", function (req, res) {
-  let url = req.url;
-  let method = req.method;
-  res.send(`<h3>La ${url} del method ${method} no se encuentra disponible`);
-});
-// app.use('/', (req, res)
-//     res.send('Hola')
-// })
-
-//-----Escuchar server-----//
-const PORT = process.env.PORT || 5500;
-app.listen(PORT, () =>
-  console.log(`Servidor conectado, escuchando el puerto ${PORT}`)
-); //escucha el puerto y recibe un callback

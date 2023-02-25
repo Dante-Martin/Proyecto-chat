@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RE loco!</title>
-  </head>
 
-  <body>
-    <h1>Archivo publico estatico</h1>
-    <form name="message" action="/recibir" method="post" autocomplete="off">
-      <input name="user" type="text" placeholder="usuario" id="user" />
-      <input
-        name="usermsg"
-        type="text"
-        id="usermsg"
-        size="63"
-        placeholder="mensaje"
-      />
-      <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivo publico estatico</title>
+
+</head>
+
+<body>
+  <h1>Zona 31</h1>
+  <!-- Formulario acceso  -->
+  <div id="form-login">
+    <div>
+      <h4>Introduce tu usuario</h4>
+    </div>
+    <p id="user-error"></p>
+    <div>
+      <form action="/mensajear" id="form" method="post">
+        <input type="text" name="user" id="user">
+        <button type="submit" id="access">Acceder</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      localStorage.setItem("usuario", document.getElementById("user").value);
+      document.getElementById("form").submit();
+    })
+
+
+
+  </script>
+</body>
+
+
 </html>

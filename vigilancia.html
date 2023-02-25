@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en" class="perfect-scrollbar-on">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <title>vigilancia</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-192x192.png" sizes="192x192" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-160x160.png" sizes="160x160" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+</head>
+<style>
+    #fotoGrandeEnModal {
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+
+    .dni img {
+        object-fit: cover;
+        border: 2px solid white;
+        width: 200px;
+        height: 200px;
+    }
+
+    .face img {
+        object-fit: cover;
+        border: 2px solid white;
+        width: 200px;
+        height: 200px;
+    }
+
+    .facedni {
+        max-width: 450px;
+        color: white;
+    }
+
+
+
+.slidervertical {
+  display: inline-block;
+  width: 20px;
+  height: 150px;
+  padding: 0;
+  vertical-align: top;
+}
+
+.slidervertical input {
+  width: 150px;
+  height: 10px;
+  margin: 0;
+  transform-origin: 75px 75px;
+  transform: rotate(-90deg);
+  margin-left: 5px;
+}
+
+    </style>
+
+<body class="dark-edition">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="azure" data-background-color="black" data-image="assets/images/sidebar-1.jpg">
+            <div class="logo"><a class="simple-text logo-normal" id="countryNameTitulo"> ALDABA </a></div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(5);">
+                            <i class="material-icons">done_outline</i>
+                            <p>Verificar&nbsp;&nbsp;<span class="badge badge-pill badge-success" id="verifVigilanciaBadge">0</span></p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(3);">
+                            <i class="material-icons">arrow_forward</i>
+                            <p>Próximas visitas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(2);">
+                            <i class="material-icons">arrow_downward</i>
+                            <p>Visitas dentro</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(4);">
+                            <i class="material-icons">arrow_back</i>
+                            <p>Visitas pasadas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="menu(1);">
+                            <i class="material-icons">assignment</i>
+                            <p>ABM Residentes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(7);">
+                            <i class="material-icons">layers</i>
+                            <p>Camaras</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(6);">
+                            <i class="material-icons">find_replace</i>
+                            <p>Comprobacion manual</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="javascript:void(0)" onclick="menu(8);">
+                            <i class="material-icons">content_paste</i>
+                            <p>Indicadores</p>
+                        </a>
+                    </li>
+                    <div class="alert alert-warning" style="text-align: center;" id="serversmsbadge" role="alert">SMS Desconectado</div>
+                </ul>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-right">
+                            <ul>
+                                <li>
+                                    <a href="https://icuadrado.net:3000/">
+                                        #aldaba
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                        <form class="navbar-form">
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content" id="aquivatodo" style=";margin-top: 40px;"></div>
+            <div class="content" id="pantallaVisitaFutura" style=";margin-top: 40px; display: none"> </div>
+            <div class="content" id="pantallaVisitaAdentro" style=";margin-top: 40px; display: none"> </div>
+            <div class="content" id="pantallaChequear" style=";margin-top: 40px; display: none"> </div>
+            <div class="content" id="pantallaVisitaPasada" style=";margin-top: 40px; display: none"> </div>
+            <div class="content" id="videosvigilancia" style=";margin-top: 40px; display: none">
+                <div id="videos"> </div>
+                <span id="cam-qr-result">&nbsp;</span>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalloguin" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header m-5">
+                    <h3>Ingrese el password para poder operar esta aplicación</h3>
+                </div>
+                <div class="modal-body ">
+                    <form class="form-inline" action="javascript:void(0);" method="">
+                        <div class="form-group mx-auto">
+                            <p></p>
+                            <label for="loguinpassword" class="bmd-label-floating">Password</label>
+                            <input type="password" autocomplete="off" class="form-control" id="loguinpassword" style="color:black;" onfocus="aux1()" />
+                            <i id="passmal" class="material-icons" style="color:red;visibility: hidden;">clear</i>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer m-5">
+                    <span class="form-group bmd-form-group">
+                        <a href="javascript:void(0)" type="button" id="modalbotonverificar" class="btn btn-primary">verificar</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade  bd-example-modal-xl" id="modalFoto" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content ">
+                <img id="fotoGrandeEnModal" src="" alt="foto" style="width: inherit;" />
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/popper.min.js" type="text/javascript"></script>
+    <script src="assets/js/chartist.min.js"></script>
+    <script src="assets/js/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/js/material-dashboard.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/js/qr-scanner.umd.min.js"></script>
+    <script>
+    // do something with QrScanner
+    function qr(cual, accion) {
+        if (accion == 'alta') {
+            console.log("lee posible QR: ", cual);
+            let videoqqq = document.getElementById(cual);
+            let camQrResult = document.getElementById('cam-qr-result');
+
+            setInterval(dale, 2000);
+
+            function dale() {
+                let canvas = document.createElement("canvas");
+                let img = document.createElement("img");
+
+                canvas.width = videoqqq.videoWidth;
+                canvas.height = videoqqq.videoHeight;
+                canvas.getContext("2d").drawImage(videoqqq, 0, 0);
+                img.src = canvas.toDataURL("image/webp");
+                QrScanner.scanImage(img.src)
+                    .then(result => leyoQR(camQrResult, result))
+                    .catch(error => {
+                        //camQrResult.textContent = error; //No QR code found
+                        //camQrResult.style.color = 'inherit';
+                    });
+
+            }
+
+
+        }
+    }
+    </script>
+    <script>
+    /////////////////////////////////  Basico para Vigilancia ////////////////////////////
+    var datosDesdeSQL = 'xyzopqdatosdesdeelserver';
+    //console.log(datosDesdeSQL);
+    var caso = JSON.parse(datosDesdeSQL);
+    var country = caso.country;
+    var countryName = caso.nombre;
+    localStorage.setItem('country', country);
+    localStorage.setItem('nombre', countryName);
+    var usuarioSINverificar = true;
+
+    $('#countryNameTitulo').html(countryName);
+
+    verificaUsuarioVigilancia();
+
+    /// esto es para el password inicial, en los celulares, al presionar enter, quiere cambiar de pagina, con esto el enter será tembien el boton de enviar
+    document.getElementById("loguinpassword").addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            envialogin();
+        }
+    });
+
+    function aux1() {
+        $('#passmal').css('visibility', 'hidden');
+    }
+
+    function verificaUsuarioVigilancia() {
+        var codigoverif = localStorage.getItem("codigoverif");
+
+        if (codigoverif == 'undefined' || codigoverif == null) {
+            usuarioSINverificar = true;
+            $('#modalloguin').modal('show');
+            setTimeout(function() {
+                $('#loguinpassword').focus();
+            }, 1500);
+            $("#modalbotonverificar").attr('onClick', ' envialogin()');
+        } else {
+            if (codigoverif.substring(0, 1) == '3') { //si empieza con 3 entonces es valido
+                usuarioVerificado();
+            } else {
+                usuarioSINverificar = true;
+                $('#modalloguin').modal('show');
+                setTimeout(function() {
+                    $('#loguinpassword').focus();
+                }, 500);
+                $("#modalbotonverificar").attr('onClick', ' envialogin()');
+            }
+        }
+    }
+
+    function envialogin() {
+
+        $("#modalbotonverificar").attr('onClick', '');
+        var pass = $("#loguinpassword").val();
+        if (pass == undefined || pass.length < 2) {
+            $("#passmal").css('visibility', 'visible');
+            $("#modalbotonverificar").attr('onClick', ' envialogin()');
+        } else {
+            //console.log(pass);
+            //console.log(country);
+            $.ajax({
+                type: "post",
+                data: {
+                    country: country,
+                    pass: pass
+                },
+                contentType: 'application/x-www-form-urlencoded',
+                mimeType: 'application/x-www-form-urlencoded',
+                url: "https://icuadrado.net:3000/vigilancialogin",
+                success: function(msg) {
+                    //console.log(msg);
+                    var respuesta = JSON.parse(msg);
+                    if (respuesta[0].error == false) {
+                        if (respuesta[0].verificado == true) {
+                            let aux = '3' + Math.floor(Math.random() * 1000000);
+                            localStorage.setItem('codigoverif', aux);
+                            usuarioVerificado();
+                        } else {
+                            $("#loguinpassword").val('');
+                            $("#passmal").css('visibility', 'visible');
+                        }
+                    } else {
+                        alert('hubo un error al intentar verificar el password en la base de datos');
+                        $("#loguinpassword").val('');
+                        $("#passmal").css('visibility', 'visible');
+                    }
+                    $("#modalbotonverificar").attr('onClick', ' envialogin()');
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("No hay conexion a la base de datos, no se pudo verificar el password");
+                    $("#modalbotonverificar").attr('onClick', ' envialogin()');
+                }
+
+            });
+        }
+    }
+
+    function usuarioVerificado() {
+        usuarioSINverificar = false;
+        $('#modalloguin').modal('hide');
+        //console.log(33);
+    }
+
+    function menu(x) {
+        //console.log (seleccionar.parent().html());
+
+        switch (x) {
+            case 1:
+                $("#pantallaVisitaFutura").fadeOut();
+                $("#pantallaChequear").fadeOut();
+                $("#pantallaVisitaAdentro").fadeOut();
+                $("#pantallaVisitaPasada").fadeOut();
+                $("#videosvigilancia").fadeOut();
+
+                $("#aquivatodo").load("https://icuadrado.net:3000/vabmresidente", function() {
+                    $("#aquivatodo").fadeIn();
+                });
+                //$("#titulo").html("<i class='material-icons'>assessment</i> Dashboard");
+
+
+                break;
+            case 2:
+                $("#aquivatodo").fadeOut();
+                $("#pantallaVisitaFutura").fadeOut();
+                $("#pantallaChequear").fadeOut();
+                $("#pantallaVisitaPasada").fadeOut();
+                $("#videosvigilancia").fadeOut();
+                $("#pantallaVisitaAdentro").fadeIn();
+                break;
+            case 3:
+                //$("#aquivatodo").css('display', 'none').load("https://icuadrado.net:3000/vigilanciavisitafutura", function() {
+                //  $("#aquivatodo").fadeIn();
+                //});
+                $("#aquivatodo").fadeOut();
+                $("#pantallaChequear").fadeOut();
+                $("#pantallaVisitaAdentro").fadeOut();
+                $("#pantallaVisitaPasada").fadeOut();
+                $("#videosvigilancia").fadeOut();
+                $("#pantallaVisitaFutura").fadeIn();
+
+                break;
+            case 4:
+                $("#aquivatodo").fadeOut();
+                $("#pantallaChequear").fadeOut();
+                $("#pantallaVisitaFutura").fadeOut();
+                $("#pantallaVisitaAdentro").fadeOut();
+                $("#videosvigilancia").fadeOut();
+                $("#pantallaVisitaPasada").fadeIn();
+
+
+                break;
+            case 5:
+                //$("#aquivatodo").css('display', 'none').load("https://icuadrado.net:3000/vchequea", function() {
+                //    $("#aquivatodo").fadeIn();
+                //});
+                //$("#aquivatodo").load("https://icuadrado.net:3000/vabmresidente");
+                $("#aquivatodo").fadeOut();
+                $("#pantallaVisitaFutura").fadeOut();
+                $("#pantallaVisitaAdentro").fadeOut();
+                $("#pantallaVisitaPasada").fadeOut();
+                $("#videosvigilancia").fadeOut();
+                $("#pantallaChequear").fadeIn();
+
+                $("#titulo").html("<i class='material-icons'>done_outline</i> Dashboard");
+
+                break;
+            case 7:
+                $("#aquivatodo").fadeOut();
+                $("#pantallaVisitaFutura").fadeOut();
+                $("#pantallaVisitaAdentro").fadeOut();
+                $("#pantallaVisitaPasada").fadeOut();
+                $("#pantallaChequear").fadeOut();
+                $("#videosvigilancia").fadeIn();
+
+
+                break;
+
+            case 8:
+
+                break;
+            case 9:
+
+                break;
+            case 10:
+
+                break;
+
+            default:
+
+
+        }
+        var element = HTMLElement = document.getElementsByClassName('navbar-toggler')[0];
+        if (element.getAttribute('aria-expanded') == 'true') {
+            element.click();
+        }
+    }
+
+    //// agrandar foto
+    var modalFoto = document.getElementById('modalFoto');
+    var fotoGrandeEnModal = document.getElementById("fotoGrandeEnModal");
+    fotoGrandeEnModal.onclick = function() {
+        $("#modalFoto").modal('hide');
+    }
+
+    function agrandarfotoenmodal(e) {
+        fotoGrandeEnModal.src = e.src;
+        $('#modalFoto').modal('show');
+    }
+    //// fin agrandar foto
+    $(document).ready(function() {
+        menu(7);
+    });
+    </script>
+    <script>
+    function ingresoPorVigilancia(cual) {
+
+        $.ajax({
+            type: "post",
+            data: {
+                ingreso: cual,
+                country: country
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            mimeType: 'application/x-www-form-urlencoded',
+            url: "https://icuadrado.net:3000/vigilanciaingreso",
+            success: function(msg) {
+                var respuesta = JSON.parse(msg);
+                console.log(respuesta[0].error);
+                console.log(respuesta[0].errormsg);
+                if (respuesta[0].error == "1") { alert(respuesta[0].errormsg); }
+                if (respuesta[0].error == "0") { $("#tarjetaf" + cual).hide("slow") }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("no está conectado al servidor de Aldaba");
+            }
+        });
+    }
+
+    function VerificadoPorVigilancia(cual) {
+        $.ajax({
+            type: "post",
+            data: {
+                verificado: cual
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            mimeType: 'application/x-www-form-urlencoded',
+            url: "https://icuadrado.net:3000/vigilanciapendienteverificado",
+            success: function(msg) {
+                var respuesta = JSON.parse(msg);
+                //console.log(respuesta.error);
+                //if (respuesta.error == false) { $("#tarjetaf" + cual).hide("slow") }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("no está conectado al servidor de Aldaba");
+            }
+        });
+    }
+
+    function RechazadoPorVigilancia(cual) {
+        $.ajax({
+            type: "post",
+            data: {
+                rechazado: cual
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            mimeType: 'application/x-www-form-urlencoded',
+            url: "https://icuadrado.net:3000/vigilanciapendienterechazado",
+            success: function(msg) {
+                var respuesta = JSON.parse(msg);
+                //console.log(respuesta.error);
+                if (respuesta.error == false) { $("#tarjeta" + cual).hide("slow") }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("no está conectado al servidor de Aldaba");
+            }
+        });
+    }
+    </script>
+    <script>
+    var tempVigilanciaChequear = new Set();
+    var listaTarjetasChequear = new Set();
+
+    function tarjetaVigChequear(data) {
+
+        var tarjeta = `
+            <div class="card card-hover text-white bg-primary facedni" id="tarjetacheq` + data.visita + `">
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="face">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_FACE.png?` + data.fuerzanuevo + `" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="dni">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_DNI.png?` + data.fuerzanuevo + `" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title mb-2" style="text-align: center;color: white;">` + data.nombre + ` ` + data.apellido + `</h3>`
+        if (data.nombre != data.nombre_teo || data.apellido != data.apellido_teo) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-warning bg-warning text-white border-0" role="alert">
+                        <strong>Atención con el nombre - </strong> El residente invitó a ` + data.nombre_teo + ` ` + data.apellido_teo + `
+                    </div>`
+        }
+        if (data.verif_residente == 1) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                        <strong>Correcto - </strong> El residente verificó la foto de esta persona
+                    </div>`
+        }
+        tarjeta = tarjeta + `<div class="jumbotron">
+                        <p class="lead">Residente: ` + data.residente + `
+                        </p>
+                        <hr class="my-2">
+                        <div class="pull-left">Lote: ` + data.lote + `</div>
+                        <div class="pull-right">Creada el: ` + data.fecha_alta + `</div>
+                    </div>
+                    
+                    <a href="javascript:void(0)" onclick="RechazadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Pedir que mejore la foto</a>
+                    <div class="pull-right">
+                    <a href="javascript:void(0)" onclick="VerificadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Correcta</a>
+                    </div>
+                </div>
+            </div>`
+        $("#pantallaChequear").append(tarjeta);
+        listaTarjetasChequear.add(data.id);
+    }
+    </script>
+    <script>
+    var tempInvitacionesAdentro = new Set();
+    var listaTarjetasInvAdent = new Set();
+
+    function tarjetaVisitaAdentroAgrega(data) {
+        //console.log(data);
+        let horatextual;
+        if (data.minutos == 0) { horatextual = data.hora } else { horatextual = data.hora + ':' + data.minutos }
+        let tarjeta = `
+        <div class="card shadow" id="tarjetaVisitaAdentro` + data.id + `" style='max-width: 800px;'>`;
+        if (data.repite == 1) {
+            tarjeta = tarjeta + `<div class="card-header bg-success">`;
+            if (data.periodicidad.toUpperCase() == 'SIEMPRE') { tarjeta = tarjeta + `<h4 style='text-align: center;'>` + data.periodicidad + `</h4>`; } else { tarjeta = tarjeta + `<h4 style='text-align: center;'>` + data.periodicidad + ` desde las ` + horatextual + `hs por ` + data.duracionhs + `Hs</h4>`; }
+        } else {
+            tarjeta = tarjeta + `<div class="card-header bg-warning">
+                                    <h4 style='text-align: center;'>` + data.periodicidad + ` desde las ` + horatextual + `hs por ` + data.duracionhs + `Hs</h4>`;
+        }
+        tarjeta = tarjeta + `
+        </div>
+        <div class="card-body">
+        <div class='row'>
+            <div class='col-4'>
+                <div class="face"><img class="mx-auto d-block" src="/fotos/` + data.visita + `_FACE.png" onclick="agrandarfotoenmodal(this)"/></div>
+                <h3  style='text-align: center;'>` + data.nombre + ` ` + data.apellido + `</h3>
+                <h4>Ingreso: ` + data.entrocuando + `</h4>
+            </div>
+            <div class='col-8'>
+                <div class="jumbotron">
+                    <p class="lead">Residente: ` + data.nombre_r + `              </p>
+                    <hr class="my-2">
+                    <div class="pull-left">Lote: ` + data.lote + `</div>
+                    <div class="pull-right"></div>
+                </div>
+                <p></p>
+                <div class="pull-right"><a href="javascript:void(0)" onclick="visitaAdentroSalir(` + data.id + `)" class="btn btn-dark">la visita ya sale</a></div>
+                  
+            </div>
+        </div>
+        </div>
+        
+      </div>`;
+        $("#pantallaVisitaAdentro").append(tarjeta);
+        //document.getElementById('ubicarTarjetas').appendChild(tarjeta);
+        listaTarjetasInvAdent.add(data.id);
+    }
+
+    function visitaAdentroSalir(cual) {
+        $.ajax({
+            type: "post",
+            data: {
+                salir: cual,
+                country: country
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            mimeType: 'application/x-www-form-urlencoded',
+            url: "https://icuadrado.net:3000/vigilanciavisitasale",
+            success: function(msg) {
+                var respuesta = JSON.parse(msg);
+                //console.log(respuesta.error);
+                if (respuesta.error == false) { $("#tarjetaVisitaAdentro" + cual).hide("slow") }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("no está conectado al servidor de Aldaba");
+            }
+        });
+    }
+    </script>
+    <script>
+    var tempInvitacionFutura = new Set();
+    var listaTarjetaFutura = new Set();
+    var tempTarjetaQR = new Set();
+    var listaTarjetaQR = new Set();
+
+    function tarjetaFutura(data) {
+        let horatextual;
+        if (data.minutos == 0) { horatextual = data.hora } else { horatextual = data.hora + ':' + data.minutos }
+        let tarjeta = `
+            <div class="card card-hover text-white bg-info facedni" id="tarjetaf` + data.id + `">
+                <div class="card-header ">`;
+        if (data.forma == 'periodica') {
+            tarjeta = tarjeta + `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                                                 <h3>De forma periódica,  a las ` + horatextual + `Hs y permanece por ` + data.duracionhs + ` horas</h3>
+                                                 </div>`
+        }
+        if (data.forma == 'siempre') {
+            tarjeta = tarjeta + `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                                                 <h3 style="text-align: center;">siempre</h3>
+                                                 </div>`
+        }
+        if (data.forma == 'dia') {
+            tarjeta = tarjeta + `<div class="alert alert-warning bg-warning text-white border-0" role="alert">
+                                                 <h3>Sólo por el dia ` + data.dia + ` a las ` + horatextual + `Hs y permanece por ` + data.duracionhs + ` horas</h3>
+                                                 </div>`
+        }
+        tarjeta = tarjeta + `<div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="face">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_FACE.png" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="dni">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_DNI.png" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title mb-2" style="text-align: center;color: white;">` + data.nombre + ` ` + data.apellido + `</h3>`;
+        if (data.verifvigilancia == 0) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-danger bg-danger text-white border-0" role="alert">
+                        <strong>Atención - </strong> NO FUE PREVIAMENTE VERIFICADO
+                                            <a href="javascript:void(0)" onclick="RechazadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Pedir que mejore la foto</a>
+                    <div class="pull-right">
+                    <a href="javascript:void(0)" onclick="VerificadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Verificado OK</a>
+                    </div>
+                    </div>`
+        }
+        if (data.verif_residente == 1) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                        <strong>Correcto - </strong> El residente verificó la foto de esta persona
+                    </div>`
+        }
+        tarjeta = tarjeta + `<div class="jumbotron">
+                        <p class="lead">Residente: ` + data.nombre_r + `</p>
+                        <hr class="my-2">
+                        <div class="pull-left">Lote: ` + data.lote + `</div>
+                        <div class="pull-right">Creada el: ` + data.fecha_alta + `</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="pull-right">
+                        <a href="javascript:void(0)" onclick="ingresoPorVigilancia(` + data.id + `)" class="btn btn-dark">Ingresó</a>
+                    </div>
+                </div>
+            </div>`;
+        $("#pantallaVisitaFutura").append(tarjeta);
+        //document.getElementById('ubicarTarjetas').appendChild(tarjeta);
+        listaTarjetaFutura.add(data.id);
+    }
+
+    function listaVisitapasada(data) {
+        let tarjeta =
+            `<table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Salió</th>
+                    <th>Entró</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Repetición</th>
+                    <th>cuando</th>
+
+                  </tr>
+                </thead>
+                <tbody>`;
+                    for (let cada of data) {
+                        //console.log(cada);
+                        tarjeta = tarjeta + `
+                  <tr>
+                    <td>` + cada.saliocuando + `</td>
+                    <td>` + cada.entrocuando + `</td>
+                    <td>` + cada.nombre + `</td>
+                    <td>` + cada.apellido + `</td>
+                    <td>` + cada.forma + `</td>
+                    <td>` + cada.dia + `</td>
+                  </tr>`;
+        }
+
+        tarjeta = tarjeta + `</tbody>
+             </table>`;
+        $("#pantallaVisitaPasada").html(tarjeta);
+    }
+
+    function tarjetaQR(data) {
+        console.log(data);
+        let horatextual;
+        if (data.minutos == 0) { horatextual = data.hora } else { horatextual = data.hora + ':' + data.minutos }
+        let tarjeta = `
+            <div class="card card-hover text-white bg-info facedni" id="tarjetaf` + data.id + `">
+                <div class="card-header ">`;
+        if (data.forma == 'periodica') {
+            tarjeta = tarjeta + `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                                                 <h3>De forma periódica,  a las ` + horatextual + `Hs y permanece por ` + data.duracionhs + ` horas</h3>
+                                                 </div>`
+        }
+        if (data.forma == 'siempre') {
+            tarjeta = tarjeta + `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                                                 <h3 style="text-align: center;">siempre</h3>
+                                                 </div>`
+        }
+        if (data.forma == 'dia') {
+            tarjeta = tarjeta + `<div class="alert alert-warning bg-warning text-white border-0" role="alert">
+                                                 <h3>Sólo por el dia ` + data.dia + ` a las ` + horatextual + `Hs y permanece por ` + data.duracionhs + ` horas</h3>
+                                                 </div>`
+        }
+        tarjeta = tarjeta + `<div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="face">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_FACE.png" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="dni">
+                                <img class="mx-auto d-block" src="/fotos/` + data.visita + `_DNI.png" onclick="agrandarfotoenmodal(this)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title mb-2" style="text-align: center;color: white;">` + data.nombre + ` ` + data.apellido + `</h3>`;
+        if (data.verifvigilancia == 0) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-danger bg-danger text-white border-0" role="alert">
+                        <strong>Atención - </strong> NO FUE PREVIAMENTE VERIFICADO
+                                            <a href="javascript:void(0)" onclick="RechazadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Pedir que mejore la foto</a>
+                    <div class="pull-right">
+                    <a href="javascript:void(0)" onclick="VerificadoPorVigilancia(` + data.visita + `)" class="btn btn-dark">Verificado OK</a>
+                    </div>
+                    </div>`
+        }
+        if (data.verif_residente == 1) {
+            tarjeta = tarjeta +
+                `<div class="alert alert-success bg-success text-white border-0" role="alert">
+                        <strong>Correcto - </strong> El residente verificó la foto de esta persona
+                    </div>`
+        }
+        tarjeta = tarjeta + `<div class="jumbotron">
+                        <p class="lead">Residente: ` + data.nombre_r + `</p>
+                        <hr class="my-2">
+                        <div class="pull-left">Lote: ` + data.lote + `</div>
+                        <div class="pull-right">Creada el: ` + data.fecha_alta + `</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="pull-right">
+                        <a href="javascript:void(0)" onclick="ingresoPorVigilancia(` + data.id + `)" class="btn btn-dark">Ingresó</a>
+                    </div>
+                </div>
+            </div>`;
+        $("#cam-qr-result").append(tarjeta);
+        //document.getElementById('ubicarTarjetas').appendChild(tarjeta);
+        listaTarjetaQR.add(data.id);
+    }
+    </script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src="/assets/js/adapter-latest.js"></script>
+    <!--script src="/simple-peer/simplepeer.min.js">// para videoconferenia</script -->
+    <!--script src="/assets/js/simplepeer.min.js"></script-->
+    <script>
+    const cantWebcams = 2;
+    var ICE_SERVERS = [
+        { url: 'stun:stun4.l.google.com:19302' }
+    ];
+    var quiensoy;
+    var quienesenvian = {};
+    var socket = io();
+    var fuerzanuevo = -1; //es para evitar que algunas fotos las lea del cache
+
+    socket.on('welcome', function(data) {
+        socket.emit('i am client', { app: 'vigilancia', country: country, id: data.id });
+        quiensoy = data.id;
+    });
+
+    socket.on('verifVigilanciaBadge', function(cantidad) {
+        console.error.bind(console);
+        if (cantidad == 0) {
+            document.getElementById('verifVigilanciaBadge').style.visibility = "collapse";
+        } else {
+            document.getElementById('verifVigilanciaBadge').style.visibility = "visible";
+            document.getElementById('verifVigilanciaBadge').innerHTML = cantidad;
+        }
+    });
+
+    socket.on('tarjetaVigilanciaChequearAgrega', function(data) {
+        if (fuerzanuevo == -1) { fuerzanuevo = data.fuerzanuevo }
+        //console.log('fuerzanuevo',fuerzanuevo);
+        if (data.id == 0) {
+            //console.log('fin')
+            for (let aux1 of listaTarjetasChequear) {
+                if (tempVigilanciaChequear.has(aux1)) {
+                    tempVigilanciaChequear.delete(aux1);
+                    //console.log('si, tiene a ' + aux1);
+                } else {
+                    $("#tarjetacheq" + aux1).hide("slow", function() { $("#tarjetacheq" + aux1).remove() });
+                    listaTarjetasChequear.delete(aux1);
+                    //console.log('epa, borrarla  ' + aux1);
+                }
+            }
+        } else {
+            tempVigilanciaChequear.add(data.id);
+            if (!listaTarjetasChequear.has(data.id)) {
+                //console.log(data.id);
+                tarjetaVigChequear(data);
+            } else {
+                if (data.fuerzanuevo != fuerzanuevo) {
+                    $("#tarjetacheq" + data.id).hide("fast", function() {
+                        $("#tarjetacheq" + data.id).remove();
+                        fuerzanuevo = data.fuerzanuevo;
+                        tarjetaVigChequear(data);
+                    });
+
+                }
+            }
+        }
+    });
+
+    socket.on('tarjetaVisitaFuturaAgrega', function(data) {
+        //console.log(data);
+        if (data.id == 0) {
+            //console.log('fin')
+            for (let aux1 of listaTarjetaFutura) {
+                if (tempInvitacionFutura.has(aux1)) {
+                    tempInvitacionFutura.delete(aux1);
+                    //console.log('si, tiene a ' + aux1);
+                } else {
+                    $("#tarjetaf" + aux1).hide("slow", function() { $("#tarjetaf" + aux1).remove() });
+                    listaTarjetaFutura.delete(aux1);
+                    //console.log('epa, borrarla  ' + aux1);
+                }
+            }
+        } else {
+            tempInvitacionFutura.add(data.id);
+            if (!listaTarjetaFutura.has(data.id)) {
+                //console.log(data.id);
+                tarjetaFutura(data);
+            }
+        }
+    });
+
+    socket.on('tarjetaVisitaAdentroAgrega', function(data) {
+        //console.log(data);
+        if (data.id == 0) {
+            //console.log('fin')
+            // cuando termina de mandar todos los registros va a ver cuales tarjetas sobran
+            // entonces mantiene un set que se llena cada vez que una tarjeta se agrega listaTarjetasInvAdent
+            // y tiene un set temporario de los registros que recibio,  
+            for (let aux1 of listaTarjetasInvAdent) {
+                if (tempInvitacionesAdentro.has(aux1)) {
+                    tempInvitacionesAdentro.delete(aux1);
+                    //console.log('si, tiene a ' + aux1);
+                } else {
+                    $("#tarjetaVisitaAdentro" + aux1).hide("slow", function() { $("#tarjetaVisitaAdentro" + aux1).remove() });
+                    listaTarjetasInvAdent.delete(aux1);
+                    //console.log('epa, borrarla  ' + aux1);
+                }
+            }
+        } else {
+            tempInvitacionesAdentro.add(data.id);
+            if (!listaTarjetasInvAdent.has(data.id)) {
+                //console.log(data.id);
+                tarjetaVisitaAdentroAgrega(data);
+            }
+        }
+    });
+
+    socket.on('tarjetaVisitaQrAgrega', function(data) {
+        console.log(data);
+        if (data.id == 0) {
+            //console.log('fin')
+            for (let aux1 of listaTarjetaQR) {
+                if (tempTarjetaQR.has(aux1)) {
+                    tempTarjetaQR.delete(aux1);
+                    //console.log('si, tiene a ' + aux1);
+                } else {
+                    $("#tarjetaf" + aux1).hide("slow", function() { $("#tarjetaf" + aux1).remove() });
+                    listaTarjetaQR.delete(aux1);
+                    //console.log('epa, borrarla  ' + aux1);
+                }
+            }
+        } else {
+            tempTarjetaQR.add(data.id);
+            if (!listaTarjetaQR.has(data.id)) {
+                //console.log(data.id);
+                tarjetaQR(data);
+            }
+        }
+    });
+
+    socket.on('listaVisitapasada', function(data) {
+        listaVisitapasada(data);
+    });
+
+    socket.on('cantServerSMS', function(data) {
+        console.log("cant servidores SMS: ", data);
+        if (data > 0) {
+            $('#serversmsbadge').removeClass("alert-warning").addClass("alert-success").html("SMS Conectado");
+        } else {
+            $('#serversmsbadge').removeClass("alert-success").addClass("alert-warning").html("SMS Desconectado");
+        }
+    });
+
+    socket.on('seDesconecto', function(cual) {
+        for (let id in quienesenvian) {
+            if (id === cual) {
+                console.log('se desconecto una webcam');
+                quienesenvian[cual].close();
+                quienesenvian[cual] = null;
+                delete quienesenvian[cual];
+            }
+        }
+        for (let t = 1; t <= cantWebcams; t++) {
+            if (remoteVideo[t] != undefined) {
+                if (remoteVideo[t].data === cual) {
+                    remoteVideo[t].remove();
+                     document.getElementById('tamanorango'+t).remove();
+                    remoteVideo[t] = undefined;
+                    break;
+                }
+            }
+
+        }
+    });
+    socket.on('disconnect', function() {
+        console.log("Aldaba se desconecto");
+        for (let cual in quienesenvian) {
+            quienesenvian[cual].close();
+            quienesenvian[cual] = null;
+            delete quienesenvian[cual];
+        }
+        $("#videos").html("");
+        $("#cam-qr-result").html("");
+
+        /*
+        for (let t = 1; t <= cantWebcams; t++) {
+            //console.log(t, remoteVideo[t])
+            if (remoteVideo[t] != undefined) {
+                remoteVideo[t].remove();
+                document.getElementById('tamanorango'+t).remove();
+                remoteVideo[t] = undefined;
+            }
+        }
+        const removeElements = (elms) => elms.forEach(el => el.remove());
+        removeElements( document.querySelectorAll(".slidervertical") );
+        */
+    });
+    socket.on('webcamOferta', function(desdeQuien, message) {
+        //console.log(quienesenvian[desdeQuien]);
+        if (quienesenvian[desdeQuien] == undefined) {
+            console.log('>>>>>>> recibe conexion de la webcam: ', desdeQuien);
+            try {
+                quienesenvian[desdeQuien] = new RTCPeerConnection({ "iceServers": ICE_SERVERS });
+                quienesenvian[desdeQuien].onicecandidate = function(event) {
+                    if (event.candidate) { //porque puede ser null
+                        //console.log('icecandidate event: ', event.candidate.candidate, ' origen: ', desdeQuien);
+                        socket.emit('vigilanciaAtiendeOferta', quiensoy, desdeQuien, {
+                            type: 'candidate',
+                            label: event.candidate.sdpMLineIndex,
+                            id: event.candidate.sdpMid,
+                            candidate: event.candidate.candidate
+                        });
+                    } else {
+                        //console.log('End of candidates.');
+                    }
+                };
+                quienesenvian[desdeQuien].onaddstream = function(event) {
+                    //console.log('Remote stream added.');
+                    for (let t = 1; t <= cantWebcams; t++) {
+                        if (!remoteVideo[t]) {
+                            //if (remoteVideo[t].srcObject == null) {
+                            agregateUnVideo(t);
+                            setTimeout(function() {
+                                remoteVideo[t].srcObject = event.stream;
+                                //console.log(event.stream);
+                                remoteVideo[t].data = desdeQuien;
+                                //console.log(t, remoteVideo[t].srcObject);
+                            }, 1000)
+
+                            break;
+                        }
+
+                    }
+                };
+                ////quienesenvian[desdeQuien].ontrack = handleRemoteStreamAdded;
+                quienesenvian[desdeQuien].onremovestream = function(event) {
+                    console.log('webcam stream removed. Event: ', event);
+                };
+                //console.log('Created RTCPeerConnnection');
+                quienesenvian[desdeQuien].setRemoteDescription(new RTCSessionDescription(message));
+                //console.log('Sending answer to peer.');
+                quienesenvian[desdeQuien].createAnswer().then(
+                    function(sessionDescription) {
+                        quienesenvian[desdeQuien].setLocalDescription(sessionDescription);
+                        //console.log('setLocalAndSendMessage sending message::', sessionDescription.type);
+
+                        socket.emit('vigilanciaAtiendeOferta', quiensoy, desdeQuien, sessionDescription);
+                        //console.log('vigilanciaAtiendeOferta', quiensoy, desdeQuien);
+                        //io.sockets.socket(desdeQuien).emit('vigilanciaAtiendeOferta', quiensoy,sessionDescription);
+                    },
+                    function(error) {
+                        console.log('Failed to create session description: ' + error.toString());
+                    }
+                );
+            } catch (e) {
+                delete quienesenvian[desdeQuien]
+                console.log('no puede crear WEBRTCPeerConnection object. error:' + e.message);
+                return;
+            }
+        }
+    });
+
+    socket.on('error', console.error.bind(console));
+    socket.on('message', console.log.bind(console));
+
+     function leyoQR(label, result) {
+                if (label.textContent != result) {
+                    label.textContent = result;
+                    label.style.color = 'red';
+                    socket.emit('leyoQR', result);
+                }
+
+            }
+
+    </script>
+    <script>
+    // para  videoconferenia
+    function constraintChange(e) {
+        let cual = e.target.data_cual;
+        let constraints = { width: e.target.value };
+        console.log('applying ' + JSON.stringify(constraints));
+        socket.emit('webcamCambiaResolucion', remoteVideo[cual].data, constraints);
+    }
+
+    function displayVideoDimensions(whereSeen) {
+        if (video.videoWidth) {
+            dimensions.innerText = 'Actual video dimensions: ' + video.videoWidth +
+                'x' + video.videoHeight + 'px.';
+            if (currentWidth !== video.videoWidth ||
+                currentHeight !== video.videoHeight) {
+                console.log(whereSeen + ': ' + dimensions.innerText);
+                currentWidth = video.videoWidth;
+                currentHeight = video.videoHeight;
+            }
+        } else {
+            dimensions.innerText = 'Video not ready';
+        }
+    }
+
+    var ubicacionVideos = document.getElementById('videos');
+    var remoteVideo = [];
+
+    /*
+        for (let t = 1; t <= cantWebcams; t++) {
+        agregateUnVideo(t);
+        }
+        */
+    function agregateUnVideo(t) {
+        let newVid = document.createElement('video');
+        newVid.id = 'remoteVideo' + t;
+        newVid.playsInline = true; //importante la I mayuscula por mas que el navegador la muestre en minuscula
+        newVid.autoplay = true;
+        newVid.muted = true;
+        newVid.controls = true;
+        newVid.data = "vacio";
+        newVid.poster = "http://www.wpclipart.com/blanks/buttons/glossy_buttons/glossy_button_blank_orange_rectangle.png";
+        //newVid.className = "vid"
+        newVid.onclick = () => openPictureMode(newVid);
+        newVid.ontouchstart = (e) => openPictureMode(newVid);
+        remoteVideo[t] = newVid;
+        video = newVid; ///prueba 
+
+        let linea  = document.createElement('br');       
+        let tamanovertical  = document.createElement('div');
+        tamanovertical.className ="slidervertical";
+        let tamano = document.createElement('input');
+        tamano.type = "range";
+        tamano.orient="vertical";
+        tamano.min = "0";
+        tamano.max = "1920";
+        tamano.value = "300";
+        tamano.id = "tamanorango" + t;
+        tamano.data_cual = t;
+        tamano.onchange = constraintChange;
+
+
+        tamanovertical.appendChild(tamano);
+        ubicacionVideos.appendChild(tamanovertical);
+        ubicacionVideos.appendChild(newVid);
+        ubicacionVideos.appendChild(linea);
+         qr(newVid.id, 'alta') ;
+        
+    }
+
+    function openPictureMode(el) {
+        console.log('opening pip')
+        el.requestPictureInPicture()
+    }
+
+    window.onbeforeunload = function() {
+        socket.emit('meDesconecto', quiensoy, function() { socket.close(); })
+    };
+    </script>
+</body>
+
+</html>
