@@ -121,7 +121,9 @@ router.get("/transmitidos", function (req, res) {
     .then((q) => {
       res.send(q);
     });
+  //envia a transmitidos los 10 datos agarrados del store
 });
+
 // --------------------------------------------------
 router.all("*", function (req, res) {
   let url = req.url;
@@ -149,20 +151,22 @@ io.on('connection', (socket) => { //escucho el connectionevento en busca de sock
   console.log("conexion con socket.io");
 
   socket.emit('welcome', { id: socket.id });
-  socket.on('i am client', (e) => { //escucha los detos de i am cliet
+  socket.on('i am client', (e) => { //escucha los datos de i am cliet
     allSockets.push(e.id);
     usuariosConectados.push(e.usuario);
     console.log(allSockets);
     console.log(usuariosConectados);
-
+    io.emit("titulo", usuariosConectados);
   });
+
+
   socket.on("typing", function (data) {
     socket.broadcast.emit("typing", data); //le envio un mensajes a todos menos a mi
   });
   socket.on('disconnect', (e) => {
 
-    let cual = allSockets.indexOf(socket.id);
-    allSockets.splice(cual, 1);
+    let cual = allSockets.indexOf(socket.id);//busca los id en el array
+    allSockets.splice(cual, 1);//elimina un elemento del array
     usuariosConectados.splice(cual, 1);
     console.log(`Usuario conectados: ${usuariosConectados}`);
   });

@@ -13,6 +13,7 @@ function guardarMensaje(que) { //mucho cuidado cuando escribo la funcion, antes 
 }
 async function dame10() {
   return await store.dame10();
+  //llamo a dame10
 }
 /*------------------------------------------------------------------------------------------*/
 function addMessage(user, usermsg) {

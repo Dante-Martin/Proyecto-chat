@@ -30,14 +30,9 @@ function guardarMensaje(todo) {
   });
 }
 
-// console.log("modeloBD:", modeloBD);
-
 async function dame10() {
   return await modeloBD.find({}, { todo: 1, _id: 0 }).sort({ _id: -1 }).limit(10);
-  // console.log("pepe:", pepe[0].todo);
-  // pepe.forEach(mensaje => {
-  //   console.log(mensaje.todo);
-  // });
+  //espera que la BD encuentre la columna "todo" pero sin el id. Luego ordena lus ultimos 10 id en orden descendente.
 }
 /*------------------------------------------------------------------------------------------*/
 function addMessage(usermsg) {
