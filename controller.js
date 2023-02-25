@@ -1,5 +1,20 @@
 const store = require("./store");
 
+/*---para guardar en BD: "RECOPILADO" que es para que aparezcan mensajes en el chat---*/
+
+function guardarMensaje(que) { //mucho cuidado cuando escribo la funcion, antes puse dos parametros (usuario, usermsg) y cuando llamaba no entendia que era usermsg poruqe solo estaba mandando un solo parametro en server que es donde se envia un parametro concatenado
+
+
+  const fullMessage = {
+    todo: que
+  };
+  store.GM(fullMessage);
+
+}
+async function dame10() {
+  return await store.dame10();
+}
+/*------------------------------------------------------------------------------------------*/
 function addMessage(user, usermsg) {
   return new Promise((resolve, reject) => {
     if (!user || !usermsg) {
@@ -73,6 +88,8 @@ module.exports = {
   addUser,
   getMessages,
   updateMessages,
+  guardarMensaje,
+  dame10,
 };
 
 // console.log(store);

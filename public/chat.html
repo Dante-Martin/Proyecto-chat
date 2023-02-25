@@ -6,24 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chateen giles</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="form-chat">
         <!-- Formulario chat -->
-        <div>
+        <div class="chat-container">
             <div>
                 <h4>Chat</h4>
             </div>
-            <div id="chat"></div>
+            <div class="chat-window">
+                <div id="output">
+                </div>
+                <div id="actions"></div>
+            </div>
             <div>
                 <!-- <input name="user" type="text" placeholder="usuario" id="user" /> -->
                 <input name="usermsg" type="text" id="usermsg" placeholder="mensaje" />
                 <button id="send">Enviar</button>
             </div>
+
         </div>
         <!-- usuarios conectados -->
-        <div>
+        <div class="chat-container">
             <div>
                 <h4>Usuarios conectados</h4>
             </div>

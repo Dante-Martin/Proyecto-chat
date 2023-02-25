@@ -114,9 +114,15 @@ router.patch("/message:id", function (req, res) {
       error(req, res, "No hay cambiosaprobados", 500, e);
     });
 });
-
-
-
+// -----------------------------------------------
+router.get("/transmitidos", function (req, res) {
+  console.log(controller.dame10());
+  controller.dame10()
+    .then((q) => {
+      res.send(q);
+    });
+});
+// --------------------------------------------------
 router.all("*", function (req, res) {
   let url = req.url;
   let method = req.method;
@@ -143,14 +149,16 @@ io.on('connection', (socket) => { //escucho el connectionevento en busca de sock
   console.log("conexion con socket.io");
 
   socket.emit('welcome', { id: socket.id });
-  socket.on('i am client', (e) => {
+  socket.on('i am client', (e) => { //escucha los detos de i am cliet
     allSockets.push(e.id);
     usuariosConectados.push(e.usuario);
     console.log(allSockets);
     console.log(usuariosConectados);
 
   });
-
+  socket.on("typing", function (data) {
+    socket.broadcast.emit("typing", data); //le envio un mensajes a todos menos a mi
+  });
   socket.on('disconnect', (e) => {
 
     let cual = allSockets.indexOf(socket.id);
@@ -159,19 +167,18 @@ io.on('connection', (socket) => { //escucho el connectionevento en busca de sock
     console.log(`Usuario conectados: ${usuariosConectados}`);
   });
   socket.on("EnviarMensaje", (data) => {
-
-
     console.log(usuariosConectados);
     console.log(data);
+    io.sockets.emit("EnviarMensaje", data);
+    controller.guardarMensaje(data.usuario + ": " + data.usermsg);
+    console.log("-" + data.usuario + ": " + data.usermsg + "-");
   });
 
 });
+//-----//
 
 
-
-
-
-
+//-----//
 
 //---EJEMPLO DE CONECCION CON XHR2 PARA obtener información de una URL sin tener que recargar la página completa---//
 

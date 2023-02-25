@@ -6,6 +6,7 @@ mongoose.set("strictQuery", true); //Cuando strictla opción se establece en tru
 
 const Schema = mongoose.Schema;
 
+
 const mySchema = new Schema(
   {
     user: String,
@@ -19,3 +20,5 @@ const mySchema = new Schema(
 const model = mongoose.model("mensaje", mySchema); // Todo lo que se cree tiene este esquema y se guarda en la base de datos con el nombre Mensaje
 
 module.exports = model;
+
+
